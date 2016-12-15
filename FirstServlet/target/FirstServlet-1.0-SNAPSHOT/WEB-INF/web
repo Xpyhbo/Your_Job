@@ -1,0 +1,11 @@
+<web-app>
+    <servlet>
+    <servlet-name>FirstSevlet</servlet-name>
+    <servlet-class>ua.yourJob.FirstServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+    <servlet-name>FirstServlet</servlet-name>
+    <url-pattern>/FirstServlet</url-pattern>
+    </servlet-mapping>
+</web-app>
