@@ -38,13 +38,13 @@
                     <execution>
                         <id>validate</id>
                         <phase>validate</phase>
-                        <configuration>
+                        <configurations>
                             <configLocation>checkstyle.xml</configLocation>
                         <encoding>UTF-8</encoding>
                         <consoleOutput>true</consoleOutput>
                         <failsOnError>true</failsOnError>
                         <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                        </configuration>
+                        </configurations>
                     </execution>
                 </executions>
             </plugin>

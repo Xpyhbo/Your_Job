@@ -8,4 +8,14 @@
     <servlet-name>FirstServlet</servlet-name>
     <url-pattern>/FirstServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletCounter</servlet-name>
+        <servlet-class>ua.yourJob.ServletCounter</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletCounter</servlet-name>
+        <url-pattern>/ServletCounter</url-pattern>
+    </servlet-mapping>
 </web-app>
