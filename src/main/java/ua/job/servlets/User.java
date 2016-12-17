@@ -1,4 +1,4 @@
-package ua.yourJob;
+package ua.job.servlets;
 
 import java.util.Date;
 

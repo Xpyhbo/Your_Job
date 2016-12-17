@@ -1,4 +1,4 @@
-package ua.yourJob;
+package ua.job.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -81,9 +81,9 @@ public class FirstServlet extends HttpServlet {
             user.setTrip(tripDate);
             user.setMoney(money);
             users.add(user);
-            writer.write(new StringBuilder("User Name: ")
+            writer.write(new StringBuilder("model Name: ")
                     .append(user.getName()).append("<br>")
-                    .append(" User id: ").append(user.getId()).append("<br>")
+                    .append(" model id: ").append(user.getId()).append("<br>")
                     .append("Trip date: ").append(user.getTrip()).append("<br>")
                     .append("Money to declare: ").append(user.getMoney()).append("$<br>")
                     .append("Items for travel: ").toString());
@@ -107,7 +107,7 @@ public class FirstServlet extends HttpServlet {
             for (User list : users) {
                 if (list.getId() == currentId)
                     list.setName(name);
-                writer.write("User with " + currentId + " has been updated");
+                writer.write("model with " + currentId + " has been updated");
             }
         }
         writer.flush();
