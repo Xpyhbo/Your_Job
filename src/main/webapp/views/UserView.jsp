@@ -25,39 +25,43 @@
     String name = request.getParameter("name");
     String surName = request.getParameter("surname");
     String parameter = "";
+    if(name != null && surName != null){
     if (request.getParameterMap().containsKey("create")){
         parameter = request.getParameter("create");
         UserService.getInstance().addUser(new User(name, surName));
     }
     else if (request.getParameterMap().containsKey("edit")){
-     UserService.getInstance().editUser(request.getParameter("oldSurName"));
+     UserService.getInstance().editUser(request.getParameter("surname"));
     }
-    else if (request.getParameterMap().containsKey("delete")){
-        UserService.getInstance().deleteUser(request.getParameter("surname"));
-
+    else if (request.getParameterMap().containsKey("delete")) {
+        UserService.getInstance().deleteUser(surName);
+    }
     }
 %>
 <div>Users table</div>
 <table>
-
     <tr>
-        <th>Id</th>
+
         <th>Name</th>
         <th>Surname</th>
-        <th>Edit Field</th>
-        <th>Delete Field</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
-    <form action="<%= request.getContextPath()%>/views/UserView.jsp" method="post">
     <% for (User user : UserService.getInstance().getAll()) { %>
     <tr>
-        <td><%= user.getId()%></td>
         <td><%= user.getName()%></td>
         <td><%= user.getSurName()%></td>
-        <td><input type="submit" name="edit" value="Edit"></td>
-        <td><input type="submit" name="delete" value="Delete"></td>
+        <form action="<%= request.getContextPath()%>/views/UserView.jsp" method="post">
+            <td><input type="submit" name="edit" value="Edit"></td>
+            <input type="hidden" name="edit">
+        </form>
+        <form action="<%= request.getContextPath()%>/views/UserView.jsp" method="post">
+            <td><input type="submit" name="delete" value="Delete"></td>
+            <input type="hidden" name="delete">
+        </form>
     </tr>
     <% } %>
-        </form>
+
 </table>
 
 </body>
