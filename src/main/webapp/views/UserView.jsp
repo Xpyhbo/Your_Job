@@ -13,55 +13,39 @@
 </head>
 <body>
 <div>
-    <form action="<%=request.getContextPath()%>/views/UserView.jsp " method="post">
+    <form action="<%=request.getContextPath()%>/User?action=create" method="post">
+        Id: <input type="text" name="id">
         Name: <input type="text" name="name">
-        Surname: <input type="text" name="surname">
-        <input type="submit" name="create"value="Create">
+        <input type="submit" value="Create"><br>
+
     </form>
 </div>
 
-<%
-
-    String name = request.getParameter("name");
-    String surName = request.getParameter("surname");
-    String parameter = "";
-    if(name != null && surName != null){
-    if (request.getParameterMap().containsKey("create")){
-        parameter = request.getParameter("create");
-        UserService.getInstance().addUser(new User(name, surName));
-    }
-    else if (request.getParameterMap().containsKey("edit")){
-     UserService.getInstance().editUser(request.getParameter("surname"));
-    }
-    else if (request.getParameterMap().containsKey("delete")) {
-        UserService.getInstance().deleteUser(surName);
-    }
-    }
-%>
 <div>Users table</div>
 <table>
     <tr>
 
+        <th>Id</th>
         <th>Name</th>
-        <th>Surname</th>
+        <th>Edit name</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
     <% for (User user : UserService.getInstance().getAll()) { %>
     <tr>
-        <td><%= user.getName()%></td>
-        <td><%= user.getSurName()%></td>
-        <form action="<%= request.getContextPath()%>/views/UserView.jsp" method="post">
-            <td><input type="submit" name="edit" value="Edit"></td>
-            <input type="hidden" name="edit">
+        <td><%= user.getId()%>
+        </td>
+        <td><%= user.getName()%>
+        </td>
+        <form action="<%= request.getContextPath()%>/User?action=edit&id=<%=user.getId()%>" method="post">
+            <td><input type="text" name="editName"></td>
+            <td><input type="submit" value="Edit"></td>
         </form>
-        <form action="<%= request.getContextPath()%>/views/UserView.jsp" method="post">
-            <td><input type="submit" name="delete" value="Delete"></td>
-            <input type="hidden" name="delete">
+        <form action="<%= request.getContextPath()%>/User?action=delete&id=<%=user.getId()%>" method="post">
+            <td><input type="submit" value="Delete"></td>
         </form>
     </tr>
     <% } %>
-
 </table>
 
 </body>

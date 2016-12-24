@@ -2,6 +2,7 @@ package ua.job.services;
 
 import ua.job.model.User;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -11,7 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class UserService {
     private static final UserService instance = new UserService();
-    private CopyOnWriteArrayList<User> users = new CopyOnWriteArrayList<User>();
+    private ArrayList<User> users = new ArrayList<User>();
     private int index;
 
     public static UserService getInstance() {
@@ -19,34 +20,31 @@ public class UserService {
     }
 
     private UserService() {
-        ;
     }
 
 
-    public CopyOnWriteArrayList<User> getAll() {
+    public ArrayList<User> getAll() {
         return users;
     }
 
     public void addUser(User user) {
         this.users.add(user);
-        user.setId(index);
     }
 
-    public void editUser(String oldSurname) {
-        for (User user : getInstance().getAll()) {
-            if (oldSurname.toLowerCase().equals(user.getSurName().toLowerCase())) {
-
+    public void editUser(String id, String param) {
+        for (User user : users){
+            if (id.equals(user.getId())){
+                user.setName(param);
             }
         }
     }
 
-    public void deleteUser(String surName) {
+    public void deleteUser(String id) {
         Iterator<User> iter = users.iterator();
         while (iter.hasNext()){
-            User element = (User) iter.next();
-            if (element.getSurName().equalsIgnoreCase(surName))
+            User element = iter.next();
+            if (element.getId().equalsIgnoreCase(id))
                 iter.remove();
-
         }
         }
 
