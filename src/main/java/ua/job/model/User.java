@@ -11,14 +11,9 @@ public class User {
         this.name = name;
     }
 
-
-
     public String getName() {
         return name;
     }
-
-
-
 
     public User(String id, String name) {
         this.id = id;

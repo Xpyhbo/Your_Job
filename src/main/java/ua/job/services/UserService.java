@@ -13,7 +13,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class UserService {
     private static final UserService instance = new UserService();
     private ArrayList<User> users = new ArrayList<User>();
-    private int index;
 
     public static UserService getInstance() {
         return instance;
